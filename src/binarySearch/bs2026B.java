@@ -5,15 +5,31 @@ import java.util.Scanner;
 public class bs2026B {
     static Scanner sc = new Scanner(System.in);
 
-    private static boolean isPossible(long[] arr , int n , int k){
-        int cnt = 0;
-        for(int i=1;i<n;i++){
-            long diff = Math.abs(arr[i] - arr[i-1]);
-            if((int)diff > k){
-                cnt++;
+    private static boolean isPossible(long[] arr , int n , long k){
+        boolean used = false;
+
+        for(int i=0;i<n;){
+            if(i == n-1){
+                if(used)
+                    return false;
+                break;
             }
-            if(cnt > 1)
-                return false;
+
+            long x = arr[i];
+            long y = arr[i+1];
+
+            if(y-x > k) {
+                if(!used) {
+                    used = true;
+                }
+                else {
+                    return false;
+                }
+                i++;
+            }
+            else {
+                i += 2;
+            }
         }
         return true;
     }
@@ -28,15 +44,11 @@ public class bs2026B {
                 arr[i] = sc.nextLong();
             }
 
-            int low =1 ;
-            int high = 0;
-            for(int i=1;i<n;i++){
-                long diff = Math.abs(arr[i] - arr[i-1]);
-                high = Math.max(high , (int) diff);
-            }
-            int ans = 0;
+            long low =1 ;
+            long high = 1000000000000000005L;
+            long ans = 0;
             while(low<= high){
-                int mid = low + (high-low)/2;
+                long mid = low + (high-low)/2;
 
                 if(isPossible(arr , n , mid)){
                     ans = mid;
@@ -46,8 +58,8 @@ public class bs2026B {
                     low = mid+1;
                 }
             }
-            if(n == 1) System.out.println(1);
-            else System.out.println(ans);
+//            if(n == 1) System.out.println(1);else
+            System.out.println(ans);
         }
     }
 }
