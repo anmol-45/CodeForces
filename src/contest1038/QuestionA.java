@@ -1,8 +1,6 @@
 package contest1038;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 import java.util.Scanner;
 
 public class QuestionA {
