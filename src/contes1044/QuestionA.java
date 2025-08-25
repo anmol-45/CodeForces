@@ -1,0 +1,32 @@
+package contes1044;
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class QuestionA {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();
+        while(t-- > 0){
+            int n = sc.nextInt();
+
+            Set<Integer> st = new HashSet<>();
+
+            for(int i=0;i<n;i++){
+                int ele = sc.nextInt();
+                st.add(ele);
+            }
+
+            if(st.size() == n){
+                System.out.println("NO");
+            }
+            else{
+                System.out.println("YES");
+            }
+        }
+
+    }
+}
